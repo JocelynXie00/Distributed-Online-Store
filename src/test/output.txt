@@ -1,0 +1,23 @@
+test 0: test restock
+{"data": {"name": "tux", "price": 12.8, "quantity": 100}}
+success order 0 bought tux all
+PASS! Catalog restocks successfully
+
+test 1: test functionality: query->buy all(sucess)->query (return 0)->buy one(fail)
+PASS! test1 returns
+{"data": {"name": "bird", "price": 29.99, "quantity": 100}}
+{"data": {"order_number": 1}}
+{"data": {"name": "bird", "quantity": 100, "order_number": 1}}
+
+test 2: crash failure test manually, Please turn off the leader order in 10 sec
+PASS! test2 returns
+{"data": {"order_number": 2}}, did not notice order server crash!
+now get the order server back in 10 sec
+
+test 3: invalid order-query
+{"data": {"order_number": -1}}
+PASS! order number does not exist
+
+test 4: data consistency in replica in the end
+please turn off order server to write back to database in 10 sec
+PASS! data in 3 replicas keep the same

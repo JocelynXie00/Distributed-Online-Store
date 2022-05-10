@@ -1,0 +1,25 @@
+syntax = "proto3";
+service OrderService {
+    rpc buy(OrderInfo) returns (OrderNumber){}
+    rpc query(OrderNumber) returns (OrderInfo){}
+    rpc ping(Empty) returns (Empty){}
+    rpc update(OrderInfo) returns (Empty) {}
+    rpc get_recovery_info(OrderNumber) returns (RecoveryInfo){}
+}
+message OrderInfo {
+    string name = 1;
+    int32 quantity = 2;
+    int32 order_number = 3;
+}
+
+message OrderNumber {
+    int32 order_number = 1;
+}
+
+message RecoveryInfo {
+    repeated OrderInfo infos = 1;
+}
+
+message Empty {
+
+}
